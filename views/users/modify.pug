@@ -30,11 +30,17 @@ block content
                     input.form-control(type='text' name="numero" value=`${users.numero}`)
                 .form-group
                     label(for='exampleInputPassword1') Ville
-                    input.form-control(type='text' name="id_ville" value=`${users.id_ville}`)
+                    #AutocompleteCity-divider
+                        input#AutocompleteCity-input.form-control(type="text" value=`${users.id_ville}` autocomplete="off" onKeyUp='ajaxAutocompleteCity(this)')
+                        input#AutocompleteCity-inputId.d-none(type="text" name="id_ville" value=`${users.id_ville}` autocomplete="off" onKeyUp='ajaxAutocompleteCity(this)')
+                        #AutocompleteCity-selector
+                    
                 button.btn.btn-primary(type='submit') Modifier
     script.
-        $( document ).ready(() => {
-            autoSelectGender()
+        $(document).ready(() => {
+            autoSelectGender();
+            autoSelectCity();
+            removeNullStringInputForCity();
         })
         
         const autoSelectGender = () => {
@@ -50,5 +56,58 @@ block content
             }
         }
 
-        
-        
+        const autoSelectCity = () => {
+            var cityId = $("#AutocompleteCity-input").val()
+
+            $.ajax({ 
+                type: 'GET', 
+                url: '/cities/byId/' + cityId, 
+                data: { get_param: 'value' }, 
+                dataType: 'json',
+                success: function (data) { 
+                    $.each(data, function(index, elem) {
+                        $("#AutocompleteCity-input").val(elem.nom);
+                        $("#AutocompleteCity-inputId").val(elem.id_ville);
+                    });
+                }
+            });
+        }
+
+        const removeNullStringInputForCity = () => {
+            if($("#AutocompleteCity-input").val() == "null")
+                $("#AutocompleteCity-input").val("")
+        }
+
+        const removeAllChildsById = id => {
+            const myNode = document.getElementById(id);
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }   
+        }
+
+        const ajaxAutocompleteCity = elem => {
+            removeAllChildsById("AutocompleteCity-selector");
+            $.ajax({ 
+                type: 'GET', 
+                url: '/cities/' + elem.value, 
+                data: { get_param: 'value' }, 
+                dataType: 'json',
+                success: function (data) { 
+                    $.each(data, function(index, elem) {
+                        $('#AutocompleteCity-selector').append($('<div>', {
+                            text: elem.nom + " / " + elem.code_postal ,
+                            class:'AutocompleteCity-elem',
+                            onclick:"selectThisCity('" + elem.nom + "',"+ elem.id_ville +")"
+                        }));
+                        $("#AutocompleteCity-inputId").val("")
+
+                    });
+                }
+            });
+        }
+
+        const selectThisCity = (nom,id) => {
+            $("#AutocompleteCity-input").val(nom);
+            $("#AutocompleteCity-inputId").val(id);
+            removeAllChildsById("AutocompleteCity-selector");
+        }

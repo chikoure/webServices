@@ -20,8 +20,10 @@
   }
 
   const user = require('./controllers/index').user;
+  const city = require('./controllers/index').city;
 
   app.use('/users', user);
+  app.use('/cities', city);
 
   app.get('/', (req, res) => {
     res.render('layout');
