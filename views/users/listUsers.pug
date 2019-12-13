@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  .card
+        .card-header
+            | Utilisateurs
+        .card-body
+            table.table
+                thead
+                    tr
+                    th(scope='col') Nom
+                    th(scope='col') Prenom
+                    th(scope='col') Action
+                    th(scope='col') Action
+                tbody
+                    each user in users
+                        tr
+                        td=user.nom
+                        td=user.prenom
+                        td
+                            button.btn.btn-primary(type='button' onclick=`window.location.href='http://localhost:3000/users/${user.id_client}/modify'`) Modifier
+                        td
+                            form(method="POST" , action=`/users/${user.id_client}?_method=DELETE`)
+                                button.btn.btn-danger(type='submit') Supprimer

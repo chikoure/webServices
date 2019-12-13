@@ -1,0 +1,54 @@
+extends ../layout
+
+
+block content
+    .card
+        .card-header
+            | Modifier un utilisateur
+        .card-body
+            form(method="POST" action=`/users/${users.id_client}`)
+                .form-group
+                    label(for='exampleInputPassword1') Nom
+                    input.form-control(type='text' name="nom" value=`${users.nom}`)
+                .form-group
+                    label(for='exampleInputPassword1') Prénom
+                    input.form-control(type='text' name="prenom" value=`${users.prenom}`)
+                .form-group
+                    label(for='exampleInputPassword1') Adresse
+                    input.form-control(type='text' name="adresse" value=`${users.adresse}`)
+                .form-group
+                    label(for='exampleInputPassword1') Date de naissance
+                    input.form-control(type='text' name="date_naissance" value=`${users.date_naissance}`)
+                .form-group
+                    label(for='exampleInputPassword1') Civilité
+                    select#civiliteSelector.form-control(name='civilite' value=`${users.civilite}`)
+                        option(value='')
+                        option(value='Mme') Mme
+                        option(value='M') M
+                .form-group
+                    label(for='exampleInputPassword1') Numéro
+                    input.form-control(type='text' name="numero" value=`${users.numero}`)
+                .form-group
+                    label(for='exampleInputPassword1') Ville
+                    input.form-control(type='text' name="id_ville" value=`${users.id_ville}`)
+                button.btn.btn-primary(type='submit') Modifier
+    script.
+        $( document ).ready(() => {
+            autoSelectGender()
+        })
+        
+        const autoSelectGender = () => {
+            // Auto remplissage du genre
+            var civilite = document.getElementById('civiliteSelector').getAttribute("value");
+            // Si la civilite est null
+            civilite = civilite == "null" ? "" : civilite;
+            // Options
+            var pOptions = document.getElementById('civiliteSelector').options;
+            // Seletionne la civilite
+            for (i=0; i < pOptions.length; i++) {
+                if (pOptions[i].value == civilite) pOptions[i].selected = true;
+            }
+        }
+
+        
+        
