@@ -21,9 +21,11 @@
 
   const user = require('./controllers/index').user;
   const city = require('./controllers/index').city;
+  const order_product = require('./controllers/index').order;
 
   app.use('/users', user);
   app.use('/cities', city);
+  app.use('/orders', order_product);
 
   app.get('/', (req, res) => {
     res.render('layout');
