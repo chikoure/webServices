@@ -1,14 +1,22 @@
 module.exports = {
   fetchAll() {
-    return connection.execute('SELECT * FROM client')
+    return connection.execute('SELECT * FROM client');
   },
-  fetchOne(ID) {
-    return connection.execute('SELECT * FROM client WHERE id_client= ? ', [ID]);
+
+  fetchAllOrders() {
+    return connection.execute('SELECT * FROM commande');
   },
-  delete() {
+
+  fetchOne(id) {
+    return connection.execute('SELECT * FROM client WHERE id_client = ?', [id]);
     //todo
   },
-  add() {
+  fetchOneOrders(id) {
+    return connection.execute('SELECT * FROM commande WHERE id_client=? ', [
+      id
+    ]);
+  },
+  delete() {
     //todo
   },
   modify(id, body) {
@@ -20,9 +28,9 @@ module.exports = {
         body.adresse,
         body.civilite,
         body.numero,
-        body.id_ville == "null" || body.id_ville == "" ? null : body.id_ville,
+        body.id_ville == 'null' || body.id_ville == '' ? null : body.id_ville,
         id
       ]
     );
   }
-}
+};
