@@ -1,17 +1,35 @@
 module.exports = {
   fetchAll() {
-    return connection.execute('SELECT * FROM test')
+    return connection.execute('SELECT * FROM client');
   },
-  fetchOne() {
-     //todo
+
+  fetchAllOrders() {
+    return connection.execute('SELECT * FROM commande');
   },
-  delete() {
-     //todo
-  },
-  add() {
-     //todo
-  },
-  modify() {
+
+  fetchOne(id) {
+    return connection.execute('SELECT * FROM client WHERE id_client = ?', [id]);
     //todo
   },
-}
+  delete() {
+    //todo
+  },
+  add() {
+    //todo
+  },
+  modify(id, body) {
+    return connection.execute(
+      'UPDATE client SET nom = ? , prenom = ? , adresse = ? , date_naissance ? , civilite = ? , numero = ? , id_ville WHERE id_client = ?',
+      [
+        body.nom,
+        body.prenom,
+        body.adresse,
+        body.date_naissance,
+        body.civilite,
+        body.numero,
+        body.id_ville,
+        id
+      ]
+    );
+  }
+};

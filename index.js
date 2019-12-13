@@ -18,7 +18,9 @@
   }
 
   const user = require('./controllers/index').user;
+  const order = require('./controllers/index').order;
   app.use('/users', user);
+  app.use('/orders', order);
 
   app.listen(3000);
   console.log('Listening ...');

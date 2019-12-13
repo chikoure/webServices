@@ -2,5 +2,6 @@
   "host": "localhost",
   "user": "root",
   "password": "root",
-  "database": "formation"
+  "database": "formation",
+  "port": "8889"
 }
