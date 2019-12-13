@@ -70,6 +70,7 @@ router.post('/', async function (req, res) {
 
 router.post('/:userId', async function (req, res) {
   try {
+    console.log("req", req.body);
     const [rows, fields] = await models.user.modify(
       req.params.userId,
       req.body
