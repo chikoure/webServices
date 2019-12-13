@@ -4,9 +4,10 @@ module.exports = {
   },
 
   fetchOne(id) {
-    return connection.execute('SELECT * FROM commande WHERE id_commande = ?', [
-      id
-    ]);
+    return connection.execute(
+      'SELECT * FROM commande_produit WHERE id_commande = ?',
+      [id]
+    );
     //todo
   },
   delete() {

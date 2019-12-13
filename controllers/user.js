@@ -4,7 +4,9 @@ const models = require('./../models');
 
 router.get('/', async function(req, res) {
   const [rows, fields] = await models.user.fetchAll();
-  res.json(rows);
+  const [ro, fie] = await models.user.fetchAllOrders();
+
+  res.json(ro);
 });
 
 router.get('/listUsers', async function(req, res) {
@@ -24,10 +26,12 @@ router.get('/add', async function(req, res) {
 
 router.get('/:userId/modify', async function(req, res) {
   const [rows, fields] = await models.user.fetchOne(req.params.userId);
+  const [ro, fe] = await models.user.fetchOneOrders(req.params.userId);
   res.format({
     'text/html': () => {
       res.render('users/modify', {
-        users: rows[0]
+        users: rows[0],
+        orders: ro
       });
     }
   });
@@ -70,7 +74,7 @@ router.post('/', async function(req, res) {
 
 router.post('/:userId', async function(req, res) {
   try {
-    console.log("req", req.body);
+    console.log('req', req.body);
     const [rows, fields] = await models.user.modify(
       req.params.userId,
       req.body

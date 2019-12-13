@@ -11,6 +11,11 @@ module.exports = {
     return connection.execute('SELECT * FROM client WHERE id_client = ?', [id]);
     //todo
   },
+  fetchOneOrders(id) {
+    return connection.execute('SELECT * FROM commande WHERE id_client=? ', [
+      id
+    ]);
+  },
   delete() {
     //todo
   },

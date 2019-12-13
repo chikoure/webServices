@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .card
+        .card-header
+            | Detail de la commande
+        .card-body
+            table.table
+                thead
+                    tr
+                    th(scope='col') id_produit
+                    th(scope='col') id_commande
+                    th(scope='col') Quantite
+                    th(scope='col') Prix unitaire
+                    th(scope='col') Remise 
+                    th(scope='col') Sous totaux
+                    th(scope='col') Total general                  
+                tbody
+                    each order in orders
+                        tr
+                        td=order.id_produit
+                        td=order.id_commande
+                        td=order.quantite
+                        td=order.prix_unitaire
+                        td=order.taux_remise
+                        td=((order.prix_unitaire)*(order.quantite) - (order.taux_remise))
+                        
+                  

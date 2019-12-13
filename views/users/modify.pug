@@ -32,6 +32,29 @@ block content
                     label(for='exampleInputPassword1') Ville
                     input.form-control(type='text' name="id_ville" value=`${users.id_ville}`)
                 button.btn.btn-primary(type='submit') Modifier
+                br
+                br    
+                .card
+                    .card-header
+                        | Liste des commandes
+                    .card-body
+                        table.table
+                            thead
+                                tr
+                                th(scope='col') id_commande
+                                th(scope='col') date_commande
+                                th(scope='col') Numero de commande
+                                th(scope='col') id_client
+                                th(scope='col') Action
+                            tbody
+                                each order in orders
+                                    tr
+                                    td=order.id_commande
+                                    td=order.date_commande
+                                    td=order.numero
+                                    td=order.id_client
+                                    td
+                                        button.btn.btn-primary(type='button' onclick=`window.location.href='http://localhost:3000/orders/${order.id_commande}/detail'`) Détails de la commande 
     script.
         $( document ).ready(() => {
             autoSelectGender()

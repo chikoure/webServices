@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const models = require('./../models');
+const models = require('../models');
 
 router.get('/', async function(req, res) {
-  const [rows, fields] = await models.user.fetchAll();
+  const [rows, fields] = await models.order.fetchAll();
   res.json(rows);
 });
 
-router.get('/:orderId/orders', async function(req, res) {
-  const [rows, fields] = await models.user.fetchOne(req.params.orderId);
+router.get('/:orderId/detail', async function(req, res) {
+  const [rows, fields] = await models.order.fetchOne(req.params.orderId);
+  console.log(rows);
   // res.json(rows);
   res.format({
     'text/html': () => {
       res.render('users/orders', {
-        users: rows[0]
+        orders: rows
       });
     }
   });

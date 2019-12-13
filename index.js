@@ -20,9 +20,9 @@
   }
 
   const user = require('./controllers/index').user;
-  const order = require('./controllers/index').order;
+  const order_product = require('./controllers/index').order;
   app.use('/users', user);
-  app.use('/orders', order);
+  app.use('/orders', order_product);
 
   app.get('/', (req, res) => {
     res.render('layout');
