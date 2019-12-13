@@ -14,12 +14,10 @@ module.exports = {
   delete() {
     //todo
   },
-  add() {
-    //todo
-  },
   modify(id, body) {
+    console.log(body);
     return connection.execute(
-      'UPDATE client SET nom = ? , prenom = ? , adresse = ? , date_naissance ? , civilite = ? , numero = ? , id_ville WHERE id_client = ?',
+      'UPDATE client SET nom = ? , prenom = ? , adresse = ?, date_naissance=?, civilite=?, numero=?, id_ville=? WHERE id_client = ?',
       [
         body.nom,
         body.prenom,
