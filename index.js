@@ -9,6 +9,8 @@
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
   app.use(methodOverride('_method'));
+  app.set('views', './views');
+  app.set('view engine', 'pug');
 
   try {
     global.connection = await mysql.createConnection(config);
@@ -22,6 +24,11 @@
   app.use('/users', user);
   app.use('/orders', order);
 
+  app.get('/', (req, res) => {
+    res.render('layout');
+  });
+
+  // Launching server
   app.listen(3000);
   console.log('Listening ...');
 })();
