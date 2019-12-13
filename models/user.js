@@ -1,15 +1,15 @@
 module.exports = {
   fetchAll() {
-    return connection.execute('SELECT * FROM test')
+    return connection.execute('SELECT * FROM client')
   },
   fetchOne() {
-     //todo
+    //todo
   },
   delete() {
-     //todo
+    //todo
   },
   add() {
-     //todo
+    //todo
   },
   modify() {
     //todo
