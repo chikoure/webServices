@@ -10,8 +10,9 @@ head
     li.nav-item
       a#home-tab.nav-link.active(href='/users/listUsers') Liste d'utilisateurs
     li.nav-item
-      a#home-tab.nav-link.active(href='/token/login') Se connecter
+      a#home-tab.nav-link.active(href='/users/login') Se connecter
     li.nav-item
-    button.btn.btn-light Se deconnecter
+      form(method="POST" action=`/users/login/out`)
+        button.btn.btn-light(type="submit") Se déconnecter
   #myTabContent.tab-content
     block content

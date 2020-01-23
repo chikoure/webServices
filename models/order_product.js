@@ -1,11 +1,11 @@
 module.exports = {
   fetchAll() {
-    return connection.execute('SELECT * FROM commande');
+    return connection.execute("SELECT * FROM commande");
   },
 
   fetchOne(id) {
     return connection.execute(
-      'SELECT * FROM commande_produit WHERE id_commande = ?',
+      "SELECT * FROM commande_produit WHERE id_commande = ?",
       [id]
     );
     //todo

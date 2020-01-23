@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  form(method="POST" action=`/users/login/in`)
+    .form-group
+      label(for='exampleInputEmail1') email
+      input#exampleInputEmail1.form-control(name='email' type='email', aria-describedby='emailHelp')
+      small#emailHelp.form-text.text-muted We'll never share your password with anyone else.
+    .form-group
+      label(for='exampleInputPassword1') Password 
+      input#exampleInputPassword1.form-control(name='password' type='password')
+    button.btn.btn-primary(type='submit') Sign in 
+  script.
+    if (typeof error != "undefined") alert('#{error}')
