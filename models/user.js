@@ -33,5 +33,12 @@ module.exports = {
         id
       ]
     );
+  },
+
+  login(body) {
+    return connection.execute(
+      'SELECT * from user WHERE email = ? AND password = ?',
+      [body.email, body.password]
+    );
   }
 };
