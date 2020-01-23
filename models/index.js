@@ -1,5 +1,6 @@
 module.exports = {
-  user: require('./user'),
-  city: require('./city'),
-  order: require('./order_product')
+  user: require("./user"),
+  city: require("./city"),
+  order: require("./order_product"),
+  token: require("./token")
 };

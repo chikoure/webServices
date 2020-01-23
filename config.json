@@ -1,7 +1,15 @@
 {
+<<<<<<< HEAD
   "host": "localhost",
   "user": "root",
   "password": "root",
   "database": "formation",
   "port": "8889"
+=======
+  "host": "remotemysql.com",
+  "user": "EOQtnLRAP2",
+  "password": "4nPv5PVK2N",
+  "database": "EOQtnLRAP2",
+  "port": "3306"
+>>>>>>> 73c0324b020a25e819fb4722bdc916cab8d998c8
 }
