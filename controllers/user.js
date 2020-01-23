@@ -20,6 +20,17 @@ router.get('/listUsers', async function(req, res) {
   });
 });
 
+router.get('/login', async function(req, res) {
+  const [rows, fields] = await models.user.fetchAll();
+  res.format({
+    'text/html': () => {
+      res.render('users/login', {
+        users: rows
+      });
+    }
+  });
+});
+
 router.get('/add', async function(req, res) {
   res.render('users/add.pug');
 });

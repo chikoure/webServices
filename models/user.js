@@ -16,8 +16,9 @@ module.exports = {
       id
     ]);
   },
-  delete() {
+  delete(id) {
     //todo
+    return connection.execute('DELETE * FROM client WHERE id_client = ?', [id]);
   },
   modify(id, body) {
     return connection.execute(

@@ -20,5 +20,4 @@ block content
                         td
                             button.btn.btn-primary(type='button' onclick=`window.location.href='http://localhost:3000/users/${user.id_client}/modify'`) Modifier
                         td
-                            form(method="POST" , action=`/users/${user.id_client}?_method=DELETE`)
-                                button.btn.btn-danger(type='submit') Supprimer
+                            button.btn.btn-danger(type='button' onclick=`window.location.href='http://localhost:3000/users/${user.id_client}/delete'`) Supprimer
